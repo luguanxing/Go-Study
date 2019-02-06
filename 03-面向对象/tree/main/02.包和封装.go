@@ -1,3 +1,4 @@
+// 每个目录一个包，入口为main包
 package main
 
 import (
