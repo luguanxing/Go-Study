@@ -1,0 +1,35 @@
+package tree
+
+import "fmt"
+
+// 定义结构的方法，(node treeNode)表示this，定义和printNode(node treeNode)一致，treeNode值或指针都可以进行调用该方法(自动识别)
+func (node Node) PrintNodeVal() {
+	fmt.Println(node.Val)
+}
+
+// go函数参数为传值，需要改值要传引用即指针，treeNode值或指针都可以进行调用该方法(自动识别)
+// 指针接收：在改变内容、结构过大、一致性时考虑使用
+func (node *Node) SetNodeVal(val int) {
+	if (node == nil) {
+		fmt.Println("nil")
+		return
+	}
+	node.Val = val
+}
+
+// 中序遍历方法
+func (node *Node) InOrder() {
+	if (node == nil) {
+		return
+	}
+	node.Left.InOrder()
+	fmt.Print(node.Val, " ")
+	node.Right.InOrder()
+}
+
+// 没有结构构造函数可用工厂模式替代初始化(返回局部变量指针不会被回收，指针提示编译器自动分配到栈上)
+func CreateNode(val int) *Node {
+	return &Node{Val: val}
+}
+
+
