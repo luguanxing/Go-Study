@@ -1,0 +1,35 @@
+Duck Typing定义:
+    鸭子类型是多态(polymorphism)的一种形式.在这种形式中,不管对象属于哪个,
+    也不管声明的具体接口是什么,只要对象实现了相应的方法,函数就可以在对象上执行操作.
+    即忽略对象的真正类型，转而关注对象有没有实现所需的方法、签名和语义.
+
+举例: 大黄鸭是鸭子吗？
+    按传统类型系统定义: 脊索动物们，脊椎动物亚门，鸟纲。。。没有生命，不是鸭子
+    按duck typing定义: 像鸭子，所以是鸭子
+    (1)描述事物的外部行为而非内部结构
+    (2)严格说go属于结构化类型系统，类似duck typing
+
+python中的duck typing
+    def download(retriever):
+        return retriever.get("www.baidu.com");
+    运行时才知道传入的retriever有没有get方法
+
+C++中的duck typing
+    template<class R>
+    string download(const R& retriever){
+        return retriever.get("www.baidu.com");
+    }
+    编译时才知道传入的retriever有没有get方法
+
+Java 中是没有duck typing
+    <R extends Retriever>
+    String download(R r){
+        return r.get("www.baidu.com");
+    }
+    写代码时就知道传入的retriever有没有get方法
+    因出入的参数必须实现Retriever接口，所以不是duck typing
+
+go语言有duck typing（虽然按严格动态绑定不是）
+    实现多个接口
+    同时具有python，C++的duck typing灵活性
+    又有java的类型检查
