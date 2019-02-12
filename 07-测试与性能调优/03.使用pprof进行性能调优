@@ -1,0 +1,11 @@
+
+查看耗时绘图关系，找出耗时最大部分进而优化
+
+// 生成cpu耗时二进制文件
+go test -bench . -cpuprofile cpu.out
+
+// 使用工具打开该二进制
+go tool pprof cpu.out
+
+// 查看耗时绘图(需要安装graphviz)
+web
