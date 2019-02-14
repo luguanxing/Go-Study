@@ -51,7 +51,7 @@ func (node *Node) InOrderWithChannel() chan *Node {
 		node.InOrderFunc(func(node *Node) {
 			out <- node
 		})
-		// 数据发送完成后close管道
+		// 数据发送完成后close管道(一般是发送者执行close)
 		close(out)
 	}()
 	return out
