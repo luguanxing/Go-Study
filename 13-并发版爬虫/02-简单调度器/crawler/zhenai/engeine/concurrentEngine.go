@@ -44,12 +44,12 @@ func (c *ConcurrentEngine) Run(seeds ...types.Request) {
 func createWorker(in chan types.Request, out chan types.ParseResult) {
 	go func() {
 		for {
-			request := <-in
+			request := <-in // 没有人接收时死锁
 			parseResult, err := worker(request)
 			if err != nil {
 				continue
 			}
-			out <- parseResult
+			out <- parseResult // 与上方对应，都在输出时死锁
 		}
 	}()
 }
