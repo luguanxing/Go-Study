@@ -9,7 +9,7 @@ import (
 
 func writeFile(filename string) {
 	// 建立文件create对应关闭操作close
-	file, err := os.OpenFile(filename, os.O_EXCL|os.O_CREATE, 0666)
+	file, err := os.Create(filename)
 	if err != nil {
 		// 处理错误
 		fmt.Println("处理文件出错 ->", err)
